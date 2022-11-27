@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Active
+    </title>
+</head>
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+    
+    .main {
+        max-width: 720px;
+        margin: auto;
+    }
+    
+    .header {
+        display: flex;
+        text-align: center;
+        margin-top: 200px;
+        cursor: pointer;
+        position: relative;
+    }
+    
+    .title {
+        display: inline-block;
+        padding: 10px 20px;
+        opacity: 0.5;
+        background-color: #fff;
+    }
+    
+    .title h2 {
+        color: blue;
+        font-size: 40px;
+    }
+    
+    .title:hover {
+        opacity: 1;
+        background-color: rgba(194, 53, 100, 0.05);
+        border-color: rergba(194, 53, 100, 0.1);
+    }
+    
+    .title.active {
+        opacity: 1;
+    }
+    
+    .pane {
+        display: none;
+    }
+    
+    .pane.active {
+        display: block;
+    }
+    
+    .pane h2 {
+        margin: 10px 0;
+    }
+    
+    .header .line {
+        position: absolute;
+        width: 0px;
+        bottom: 0;
+        left: 0;
+        height: 6px;
+        background-color: red;
+        border-radius: 5px;
+        transition: all 0.2s ease;
+    }
+</style>
+
+<body>
+    <div class="main">
+        <div class="header">
+            <div class="title active">
+                <h2>React</h2>
+            </div>
+
+            <div class="title">
+                <h2>Angular</h2>
+            </div>
+
+            <div class="title">
+                <h2>Ember</h2>
+            </div>
+
+            <div class="title">
+                <h2>Vue.js</h2>
+            </div>
+            <div class="line"></div>
+        </div>
+
+        <div class="content">
+            <div class="pane active">
+                <h2>React</h2>
+                <p>React makes it painless to create interactive UIs. Design simple views for each state in your application, and React will efficiently update and render just the right components when your data changes.</p>
+            </div>
+            <div class="pane">
+                <h2>Angular</h2>
+                <p>Angular is an application design framework and development platform for creating efficient and sophisticated single-page apps.</p>
+            </div>
+            <div class="pane">
+                <h2>Ember</h2>
+                <p>Ember.js is a productive, battle-tested JavaScript framework for building modern web applications. It includes everything you need to build rich UIs that work on any device.</p>
+            </div>
+            <div class="pane">
+                <h2>Vue.js</h2>
+                <p>Vue (pronounced /vju/, like view) is a progressive framework for building user interfaces. Unlike other monolithic frameworks, Vue is designed from the ground up to be incrementally adoptable. </p>
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+    <script>
+        const $ = document.querySelector.bind(document)
+        const $$ = document.querySelectorAll.bind(document)
+
+        const tabs = $$(".title");
+        const panes = $$(".pane");
+        const Active = $('.title.active')
+
+        const line = $(".line")
+
+
+        line.style.left = Active.offsetLeft + 'px'
+        line.style.width = Active.offsetWidth + 'px'
+
+
+
+
+
+        tabs.forEach((tab, index) => {
+            const pane = panes[index]
+
+            tab.onclick = function() {
+                $('.title.active').classList.remove('active')
+                $('.pane.active').classList.remove('active')
+
+                line.style.left = this.offsetLeft + 'px'
+                line.style.width = this.offsetWidth + 'px'
+
+
+                this.classList.add('active');
+                pane.classList.add('active');
+            }
+
+        });
+    </script>
+
+</body>
+
+
+
+</html>
